@@ -1,0 +1,26 @@
+# Lingkungan Python & cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Dataset (besar + lisensi tidak mengizinkan distribusi ulang)
+data/
+
+# Arsip, paket zip, file uji pribadi
+arsip_backend_lama/
+foto_uji/
+*.zip
+*.part
+
+# Data turunan dataset (berisi label pasien) - tidak perlu untuk menjalankan web
+hasil_model_v2/*.csv
+
+# File sistem / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+.vscode/
+.idea/

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AnemiaLens — Cek Tanda Anemia dari Foto Mata</title>
+<meta name="description" content="Skrining risiko anemia dalam 1 menit dari foto kelopak mata bawah. Tanpa jarum, cukup kamera HP.">
+<meta name="theme-color" content="#FBF7F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23E0475E'/%3E%3Cpath d='M10 32c6-10 14-15 22-15s16 5 22 15c-6 10-14 15-22 15S16 42 10 32z' fill='%23fff'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23E0475E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="AnemiaLens beranda">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="url(#bg1)"/><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A6B"/><stop offset="1" stop-color="#E0475E"/></linearGradient></defs><path d="M10 32c6-10 14-15 22-15s16 5 22 15c-6 10-14 15-22 15S16 42 10 32z" fill="#fff"/><circle cx="32" cy="32" r="8.5" fill="#E0475E"/><circle cx="35" cy="29" r="2.4" fill="#fff"/></svg>
+      <span>Anemia<b>Lens</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#cara">Cara kerja</a>
+      <a href="#teknologi">Teknologi</a>
+      <a href="#riwayat-sec" id="nav-riwayat" hidden>Riwayat</a>
+    </nav>
+    <div class="nav-right">
+      <span class="pill status" id="status-pill"><i></i><span>Menghubungkan…</span></span>
+      <a href="#cek" class="btn btn-sm btn-ink">Cek sekarang</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span> Skrining anemia tanpa jarum</span>
+      <h1>Cek tanda anemia<br>cukup dari <em>foto mata.</em></h1>
+      <p class="lead">Tarik kelopak bawah, foto dengan HP, dan dalam hitungan detik AI menilai seberapa pucat bagian dalam kelopak mata Anda, lalu memperkirakan kadar hemoglobin.</p>
+      <div class="hero-cta">
+        <a href="#cek" class="btn btn-rose btn-lg">Mulai cek gratis <svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#cara" class="btn btn-ghost btn-lg">Lihat caranya</a>
+      </div>
+      <ul class="hero-trust">
+        <li><svg viewBox="0 0 24 24" class="ic"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/></svg> Foto tidak disimpan di server</li>
+        <li><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> &lt; 1 menit</li>
+        <li><svg viewBox="0 0 24 24" class="ic"><path d="M4 7h16v12H4zM9 7l1.5-3h3L15 7"/><circle cx="12" cy="13" r="3.2"/></svg> Kamera HP biasa</li>
+      </ul>
+    </div>
+
+    <!-- mockup HP -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ph-top"><span class="ph-brand">AnemiaLens</span><span class="ph-chip">Hasil</span></div>
+          <div class="ph-eye">
+            <svg viewBox="0 0 240 130"><use href="#eye-art"/></svg>
+            <span class="ph-scan"></span>
+          </div>
+          <div class="ph-card tier-sedang">
+            <div class="ph-tier"><span class="tdot"></span>Kemungkinan anemia</div>
+            <div class="ph-gauge" id="hero-gauge"></div>
+            <div class="ph-hb"><small>Perkiraan Hb</small><b>11,2</b><span>g/dL</span></div>
+          </div>
+          <div class="ph-cta">Cek Hb di puskesmas terdekat →</div>
+        </div>
+      </div>
+      <div class="float-card fc1"><b>0,84</b><span>AUC validasi</span></div>
+      <div class="float-card fc2"><span class="mini-dot ok"></span>Konjungtiva terdeteksi</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats" id="stats">
+      <div><b data-k="auc">0,84</b><span>AUC (akurasi pembeda anemia vs normal)</span></div>
+      <div><b data-k="pat">624</b><span>pasien dengan Hb laboratorium</span></div>
+      <div><b data-k="src">3</b><span>negara sumber data (Ghana, India, Italia)</span></div>
+      <div><b data-k="mae">±1,4</b><span>g/dL rata-rata selisih estimasi Hb</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MASALAH ============================== -->
+<section class="problem">
+  <div class="wrap problem-in">
+    <div class="big-num"><b>27,7%</b><span>ibu hamil di Indonesia mengalami anemia</span><small>Survei Kesehatan Indonesia (SKI) 2023, Kemenkes</small></div>
+    <div class="problem-copy">
+      <h2>Anemia sering tidak terasa, <em>dan tidak terdeteksi.</em></h2>
+      <p>Cek hemoglobin butuh tusuk jari, alat, dan tenaga kesehatan. Akibatnya banyak remaja putri dan ibu hamil baru tahu dirinya anemia setelah terlambat. AnemiaLens menjadi <b>saringan pertama</b>: siapa pun bisa cek di rumah atau posyandu, dan yang berisiko langsung diarahkan untuk tes darah.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CARA KERJA ============================== -->
+<section class="how" id="cara">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cara kerja</span>
+      <h2>Tiga langkah, <em>satu menit.</em></h2>
+    </div>
+    <div class="how-grid">
+      <article class="how-card">
+        <span class="how-n">01</span>
+        <div class="how-ic"><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/></svg></div>
+        <h3>Siapkan cahaya</h3>
+        <p>Berdiri dekat jendela atau lampu putih. Matikan flash. Taruh kertas/kartu putih di samping mata agar warna lebih akurat.</p>
+      </article>
+      <article class="how-card">
+        <span class="how-n">02</span>
+        <div class="how-ic"><svg viewBox="0 0 24 24" class="ic"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><path d="M7 16.5c1.4.9 3.1 1.5 5 1.5s3.6-.6 5-1.5" stroke-dasharray="2 2"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3>Tarik kelopak bawah</h3>
+        <p>Tarik pelan kelopak mata bawah dengan jari sampai bagian dalam yang merah muda terlihat, lalu foto dari dekat.</p>
+      </article>
+      <article class="how-card">
+        <span class="how-n">03</span>
+        <div class="how-ic"><svg viewBox="0 0 24 24" class="ic"><path d="M4 19V5M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg></div>
+        <h3>Lihat hasilnya</h3>
+        <p>AI menilai warna konjungtiva, memberi tingkat risiko dan perkiraan Hb, lalu menyarankan langkah berikutnya.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== APP ============================== -->
+<section class="app-sec" id="cek">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Cek sekarang</span>
+      <h2>Mulai skrining <em>anemia</em></h2>
+    </div>
+
+    <div class="app-card" id="app">
+      <ol class="stepper" id="stepper">
+        <li class="on" data-s="1"><span>1</span>Siapkan</li>
+        <li data-s="2"><span>2</span>Foto</li>
+        <li data-s="3"><span>3</span>Hasil</li>
+      </ol>
+
+      <div class="offline-banner" id="offline" hidden>
+        <b>Server AI belum terhubung.</b> Buka halaman ini lewat <code>Jalankan_AnemiaLens_Web.bat</code> (atau notebook Colab), jangan dengan klik dua kali file HTML-nya.
+      </div>
+
+      <!-- ---------- LANGKAH 1 ---------- -->
+      <div class="step" id="step1">
+        <div class="step-grid">
+          <div class="guide-art">
+            <svg viewBox="0 0 240 150" class="eye-guide"><use href="#eye-art"/>
+              <path d="M58 92 Q120 128 182 92" fill="none" stroke="#E0475E" stroke-width="2.2" stroke-dasharray="5 5"/>
+              <g class="lbl"><line x1="186" y1="100" x2="206" y2="122" stroke="#1F1A2E" stroke-width="1.2"/><text x="160" y="138">area yang dinilai</text></g>
+            </svg>
+            <p class="cap">Bagian dalam kelopak bawah (konjungtiva) harus terlihat jelas.</p>
+          </div>
+          <div>
+            <h3 class="step-title">Siapa yang dicek?</h3>
+            <p class="muted small">Untuk membandingkan perkiraan Hb dengan batas anemia WHO.</p>
+            <div class="chips" id="group-chips" role="radiogroup">
+              <button class="chip on" data-thr="12" data-g="Wanita dewasa">Wanita</button>
+              <button class="chip" data-thr="11" data-g="Ibu hamil">Ibu hamil</button>
+              <button class="chip" data-thr="13" data-g="Pria dewasa">Pria</button>
+              <button class="chip" data-thr="12" data-g="Remaja 12–14 th">Remaja 12–14</button>
+              <button class="chip" data-thr="11.5" data-g="Anak 5–11 th">Anak 5–11</button>
+              <button class="chip" data-thr="11" data-g="Balita">Balita</button>
+            </div>
+
+            <h3 class="step-title mt">Sebelum memotret</h3>
+            <ul class="checklist">
+              <li><span class="ck"></span>Cahaya putih merata (dekat jendela), <b>tanpa flash</b></li>
+              <li><span class="ck"></span>Tarik kelopak bawah sampai bagian merah muda terlihat</li>
+              <li><span class="ck"></span>Foto dari dekat: mata memenuhi layar, fokus tajam</li>
+              <li><span class="ck"></span>Opsional: kertas putih di samping mata untuk koreksi warna</li>
+              <li><span class="ck"></span>Jika garis AI meleset, Anda bisa <b>melingkari sendiri</b> bagian dalam kelopak</li>
+            </ul>
+            <button class="btn btn-rose btn-block mt" id="go2">Saya siap, ambil foto <svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- LANGKAH 2 ---------- -->
+      <div class="step" id="step2" hidden>
+        <div class="pick" id="pick">
+          <label class="pick-btn primary">
+            <input type="file" accept="image/*" capture="environment" id="in-cam">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M4 7h16v12H4zM9 7l1.5-3h3L15 7"/><circle cx="12" cy="13" r="3.2"/></svg>
+            <b>Buka kamera</b><small>Kamera belakang lebih tajam</small>
+          </label>
+          <label class="pick-btn">
+            <input type="file" accept="image/*,.heic,.heif" id="in-file">
+            <svg viewBox="0 0 24 24" class="ic"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 9"/></svg>
+            <b>Pilih dari galeri</b><small>JPG, PNG, atau HEIC</small>
+          </label>
+          <div class="drop-hint">atau seret foto ke sini</div>
+        </div>
+
+        <div class="editor" id="editor" hidden>
+          <div class="mode-bar">
+            <div class="seg-toggle" role="tablist" aria-label="Cara menandai konjungtiva">
+              <button class="on" data-mode="auto" role="tab">Otomatis (AI)</button>
+              <button data-mode="lasso" role="tab">Lingkari sendiri</button>
+            </div>
+            <button class="link" id="lasso-reset" hidden>Hapus lingkaran</button>
+          </div>
+          <p class="small muted mode-hint" id="mode-hint">AI mencari bagian dalam kelopak bawah sendiri. Jika hasilnya meleset, pilih <b>Lingkari sendiri</b>.</p>
+          <div class="stage-wrap">
+            <div class="stage" id="stage">
+              <img id="preview" alt="Pratinjau foto">
+              <svg class="lasso" id="lasso" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><path id="lasso-path" d=""/></svg>
+            </div>
+            <div class="noprev" id="noprev" hidden>Pratinjau tidak tersedia untuk format ini, tetapi foto tetap bisa dianalisis otomatis.</div>
+          </div>
+          <div class="opts one">
+            <label class="switch"><input type="checkbox" id="opt-card"><span class="sl"></span><span><b>Ada kertas/kartu putih di foto</b><small>AI mengoreksi warna memakai kartu putih</small></span></label>
+          </div>
+          <div class="row-btns">
+            <button class="btn btn-ghost" id="change">Ganti foto</button>
+            <button class="btn btn-rose grow" id="analyze">Analisis foto <svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+
+        <div class="loading" id="loading" hidden>
+          <div class="scan-ring"><svg viewBox="0 0 240 130"><use href="#eye-art"/></svg><span class="scanline"></span></div>
+          <ul class="load-steps" id="load-steps">
+            <li>Memeriksa kualitas foto</li>
+            <li>Mencari konjungtiva (U-Net)</li>
+            <li>Mengukur warna & kepucatan</li>
+            <li>Menggabungkan 3 model AI</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ---------- LANGKAH 3 ---------- -->
+      <div class="step" id="step3" hidden>
+        <div id="result"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RIWAYAT ============================== -->
+<section class="hist-sec" id="riwayat-sec" hidden>
+  <div class="wrap">
+    <div class="sec-head row">
+      <div><span class="eyebrow">Riwayat</span><h2>Cek sebelumnya <em>di perangkat ini</em></h2></div>
+      <button class="link" id="hist-clear">Hapus riwayat</button>
+    </div>
+    <div class="hist" id="hist"></div>
+  </div>
+</section>
+
+<!-- ============================== TEKNOLOGI ============================== -->
+<section class="tech" id="teknologi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow light">Teknologi</span>
+      <h2>Di balik satu foto, <em>lima tahap AI.</em></h2>
+    </div>
+    <div class="pipe">
+      <div class="pipe-step"><span>1</span><b>Cek kualitas</b><small>Blur, gelap, pantulan cahaya ditolak sebelum dinilai</small></div>
+      <div class="pipe-step"><span>2</span><b>Koreksi warna</b><small>Kartu putih menyeimbangkan warna antar kamera & lampu</small></div>
+      <div class="pipe-step"><span>3</span><b>Segmentasi U-Net</b><small data-k="segtxt">Memotong tepat area konjungtiva, tahan foto HP & konjungtiva pucat</small></div>
+      <div class="pipe-step"><span>4</span><b>Ensemble 3 model</b><small>Fitur warna CIELAB + Random Forest + CNN EfficientNet</small></div>
+      <div class="pipe-step"><span>5</span><b>Pengaman ROI</b><small>Menolak foto kulit/sklera atau warna di luar data latih</small></div>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h3>Divalidasi dengan Hb laboratorium</h3>
+        <p>624 pasien dari Ghana (CP-AnemiC), India, dan Italia (Eyes-Defy-Anemia). Validasi silang 5-fold dengan pemisahan per pasien, jadi foto orang yang sama tidak pernah muncul di data latih dan uji sekaligus.</p>
+        <div class="kv" id="kv">
+          <div><span>AUC ensemble</span><b data-k="auc2">0,841</b></div>
+          <div><span>Sensitivitas skrining</span><b data-k="sens">86%</b></div>
+          <div><span>Spesifisitas</span><b data-k="spec">66%</b></div>
+          <div><span>Selisih rata-rata Hb</span><b data-k="mae2">1,41 g/dL</b></div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <h3>Jujur soal batasan</h3>
+        <p>AnemiaLens adalah <b>alat skrining</b>, bukan diagnosis. Ambang dipilih agar sensitivitas ≥ 85% (lebih baik waspada daripada terlewat). Akurasi turun pada kamera atau pencahayaan yang sangat berbeda dari data latih, karena itu tersedia koreksi kartu putih dan pengaman foto.</p>
+        <div class="stack">
+          <span>PyTorch</span><span>U-Net · ResNet-34</span><span>EfficientNet-B0</span><span>scikit-learn</span><span>OpenCV · CIELAB</span><span>FastAPI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="brand small"><svg class="brand-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#E0475E"/><path d="M10 32c6-10 14-15 22-15s16 5 22 15c-6 10-14 15-22 15S16 42 10 32z" fill="#fff"/><circle cx="32" cy="32" r="8.5" fill="#E0475E"/></svg><span>Anemia<b>Lens</b></span></div>
+    <p>Prototipe untuk JOINTS 2026. Hasil adalah skrining awal, bukan diagnosis medis. Selalu konfirmasi dengan pemeriksaan hemoglobin di fasilitas kesehatan.</p>
+  </div>
+</footer>
+
+<!-- ============================== SVG ART ============================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="iris" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#8A5A3C"/><stop offset=".7" stop-color="#5A3622"/><stop offset="1" stop-color="#2E1A10"/></radialGradient>
+    <linearGradient id="conj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7A3A8"/><stop offset="1" stop-color="#E06A75"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8B996"/><stop offset="1" stop-color="#D49E78"/></linearGradient>
+    <symbol id="eye-art" viewBox="0 0 240 130">
+      <rect width="240" height="130" fill="url(#skin)"/>
+      <path d="M20 62 Q120 -6 220 62 Q190 96 120 98 Q50 96 20 62z" fill="#C98E69" opacity=".45"/>
+      <path d="M30 62 Q120 4 210 62 Q180 86 120 88 Q60 86 30 62z" fill="#FBF8F5"/>
+      <circle cx="120" cy="56" r="27" fill="url(#iris)"/>
+      <circle cx="120" cy="56" r="11" fill="#140B07"/>
+      <circle cx="128" cy="48" r="5" fill="#fff" opacity=".85"/>
+      <path d="M30 62 Q120 4 210 62" fill="none" stroke="#3B2418" stroke-width="4" stroke-linecap="round"/>
+      <path d="M44 74 Q120 104 196 74 Q186 96 120 104 Q54 96 44 74z" fill="url(#conj)"/>
+      <path d="M52 80 Q120 104 188 80" fill="none" stroke="#C94F5C" stroke-width="1" opacity=".5"/>
+      <path d="M40 76 Q120 116 200 76 Q196 112 120 118 Q44 112 40 76z" fill="#D9A27E" opacity=".9"/>
+      <rect x="102" y="104" width="36" height="40" rx="17" fill="#E2AE88"/>
+      <rect x="108" y="108" width="24" height="15" rx="7" fill="#F3D3C2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<script src="app.js"></script>
+</body>
+</html>

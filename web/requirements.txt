@@ -1,0 +1,17 @@
+# AnemiaLens Web — dependensi untuk menjalankan model di laptop (CPU cukup)
+# Model .joblib dilatih dengan scikit-learn 1.6.1; sudah diuji identik di 1.9.1,
+# jadi versi baru (yang punya paket siap-pasang untuk Python 3.14) aman dipakai.
+torch>=2.2
+torchvision
+timm==1.0.*
+segmentation-models-pytorch==0.5.*
+scikit-learn>=1.6.1
+numpy>=2.0
+pandas
+joblib
+opencv-python-headless
+pillow
+pillow-heif
+fastapi
+uvicorn
+python-multipart

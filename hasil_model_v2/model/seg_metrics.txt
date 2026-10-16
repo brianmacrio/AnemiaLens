@@ -1,0 +1,5 @@
+dice_val=0.8286
+dice_val_hp=0.8700
+robust=1
+n_train=185
+n_val=32

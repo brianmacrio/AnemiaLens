@@ -67,6 +67,12 @@ Lalu buka **http://localhost:8000**. Opsi server:
 | `--model <folder>` | Pakai folder model lain (berisi `thresholds.json`) |
 | `--no-browser` | Jangan buka browser otomatis |
 
+### Membuka dari HP yang tidak satu WiFi (link publik dari laptop)
+
+Klik dua kali **`Bagikan_Link_Publik.bat`**. File ini menjalankan server (bila belum jalan) dan membuat link HTTPS publik lewat [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/) (gratis, tanpa akun). Pertama kali, `cloudflared.exe` (±60 MB) diunduh ke folder `tools/`.
+
+Kirim link `https://….trycloudflare.com` yang muncul ke siapa pun. Link aktif selama laptop menyala dan kedua jendela hitam terbuka, dan berganti setiap kali dijalankan ulang.
+
 ### Cara 3 — Google Colab (link HTTPS publik untuk HP siapa pun)
 
 1. Buka [`AnemiaLens_Web_Colab.ipynb`](AnemiaLens_Web_Colab.ipynb) di [Google Colab](https://colab.research.google.com/).
